@@ -1,0 +1,16 @@
+{
+    "name": "faubourg-numerique/php-ngsi-ld",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "FaubourgNumerique\\NgsiLd\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pierre Josselin",
+            "email": "contact@pierre-josselin.fr"
+        }
+    ],
+    "require": {}
+}
