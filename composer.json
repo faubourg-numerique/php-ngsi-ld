@@ -12,5 +12,7 @@
             "email": "contact@pierre-josselin.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    }
 }
