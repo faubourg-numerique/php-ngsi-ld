@@ -47,8 +47,9 @@ class EntityManager
             $query["type"] = $type;
         }
         if (!is_null($q)) {
-            $query["q"] = $q; 
+            $query["q"] = $q;
         }
+        $query["limit"] = 1000; 
 
         $response = $this->contextBroker->get("entities", ["query" => $query]);
         $data = json_decode($response->getBody(), true, flags: JSON_THROW_ON_ERROR);
