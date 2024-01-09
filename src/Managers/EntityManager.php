@@ -49,11 +49,30 @@ class EntityManager
         if (!is_null($q)) {
             $query["q"] = $q;
         }
-        $query["limit"] = 1000; 
 
-        $response = $this->contextBroker->get("entities", ["query" => $query]);
-        $data = json_decode($response->getBody(), true, flags: JSON_THROW_ON_ERROR);
-        return array_map(fn ($row) => new Entity($row), $data);
+        $limit = 1000;
+        $offset = 0;
+
+        $entities = [];
+        while (true) {
+            $query["limit"] = $limit;
+            $query["offset"] = $offset;
+
+            $response = $this->contextBroker->get("entities", ["query" => $query]);
+            $rows = json_decode($response->getBody(), true, flags: JSON_THROW_ON_ERROR);
+
+            foreach ($rows as $row) {
+                $entities[] = new Entity($row);
+            }
+
+            if (count($rows) !== $limit) {
+                break;
+            }
+
+            $offset += $limit;
+        }
+
+        return $entities;
     }
 
     public function update(Entity $entity): void
