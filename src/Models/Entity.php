@@ -7,7 +7,7 @@ use FaubourgNumerique\NgsiLd\Exceptions\ReservedKeywordException;
 
 class Entity
 {
-    private array $entity = [];
+    public array $entity = [];
 
     public function __construct(string|array $idOrArray, string $type = null) {
         if (is_array($idOrArray)) {
